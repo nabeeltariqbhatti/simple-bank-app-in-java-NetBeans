@@ -178,6 +178,7 @@ public class BankApp extends javax.swing.JFrame {
        
        currAccount.deposit(amount);
        balance.setText(currAccount.getBalance().toString());
+        Util.writeFile(accounts,"accounts.txt");
     }//GEN-LAST:event_depositActionPerformed
 
     private void accountDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountDropDownActionPerformed
@@ -210,6 +211,7 @@ public class BankApp extends javax.swing.JFrame {
        
        currAccount.withdraw(amount);
        balance.setText(currAccount.getBalance().toString());
+        Util.writeFile(accounts,"accountslog.txt");
     }//GEN-LAST:event_withdrawActionPerformed
 
     private void transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferActionPerformed
@@ -229,7 +231,7 @@ public class BankApp extends javax.swing.JFrame {
        
        currAccount.transfer(transferTo, amount);
        balance.setText(currAccount.getBalance().toString());
-        
+         Util.writeFile(accounts,"accounts.txt");
     }//GEN-LAST:event_transferActionPerformed
 
     /**

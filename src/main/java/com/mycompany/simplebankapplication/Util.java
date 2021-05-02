@@ -6,7 +6,9 @@
 package com.mycompany.simplebankapplication;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 /**
@@ -31,14 +33,32 @@ public class Util {
                  
                  accounts.add(account);
              }
-             
+             br.close();
              
         }catch(Exception e){
+          
             System.out.print(e);
         
     }
        return accounts; 
        
+    }
+     public static void writeFile(ArrayList<Account> accounts,String fileName){
+        for (Account account:accounts){
+            try{
+                FileWriter fw=new FileWriter(fileName);
+                BufferedWriter bw=new BufferedWriter(fw);
+                
+                bw.append(account.getAccount()+"<>"+account.getHolder()+"<>"+account.getOpenDate()+"<>"+account.getBalance());
+                
+                bw.close();
+            }
+            catch (Exception e){
+                System.out.print(e);
+            }finally{
+                
+            }
+        }
     }
     
     
