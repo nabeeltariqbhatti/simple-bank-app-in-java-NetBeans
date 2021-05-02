@@ -50,6 +50,10 @@ public class Account {
     public Double getBalance(){
         return this.balance;
     }
+    public Double setBalance(Double newAmount){
+        this.balance=this.balance+newAmount;
+        return this.balance;
+    }
     @Override 
     public String toString(){
         return this.accountNumber;
