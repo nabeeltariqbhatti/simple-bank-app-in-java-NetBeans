@@ -100,6 +100,11 @@ public class BankApp extends javax.swing.JFrame {
         });
 
         transfer.setText("Transfer");
+        transfer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transferActionPerformed(evt);
+            }
+        });
 
         exit.setText("Exit");
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -199,13 +204,33 @@ public class BankApp extends javax.swing.JFrame {
 
     private void withdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawActionPerformed
         // TODO add your handling code here:
-         String amountString= JOptionPane.showInputDialog(this,"Enter Amount to Withdraw","Withdrawl",JOptionPane.PLAIN_MESSAGE);
+         String amountString= JOptionPane.showInputDialog(this,"Enter an Amount to Withdraw","Withdrawl",JOptionPane.PLAIN_MESSAGE);
        double amount= Double.parseDouble(amountString);
        Account currAccount=(Account)accountDropDown.getSelectedItem();
        
        currAccount.withdraw(amount);
        balance.setText(currAccount.getBalance().toString());
     }//GEN-LAST:event_withdrawActionPerformed
+
+    private void transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferActionPerformed
+        // TODO add your handling code here:
+           String accountTo= JOptionPane.showInputDialog(this,"Enter an Account to transfer","Transfer",JOptionPane.PLAIN_MESSAGE);
+         String amountString= JOptionPane.showInputDialog(this,"Enter an Amount transfer","Transfer",JOptionPane.PLAIN_MESSAGE);
+       double amount= Double.parseDouble(amountString);
+       Account currAccount=(Account)accountDropDown.getSelectedItem();
+       Account transferTo=null;
+       
+       for(Account account:accounts){
+           if(account.getAccount().equals(accountTo)){
+               transferTo=account;
+                break;
+           }
+       }
+       
+       currAccount.transfer(transferTo, amount);
+       balance.setText(currAccount.getBalance().toString());
+        
+    }//GEN-LAST:event_transferActionPerformed
 
     /**
      * @param args the command line arguments
